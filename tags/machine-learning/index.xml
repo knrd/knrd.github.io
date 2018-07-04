@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>x on Blog</title>
-    <link>https://knrd.github.io/machine-learning/</link>
-    <description>Recent content in x on Blog</description>
+    <title>Machine Learning on Blog</title>
+    <link>https://knrd.github.io/tags/machine-learning/</link>
+    <description>Recent content in Machine Learning on Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Wed, 04 Jul 2018 18:10:31 +0200</lastBuildDate>
     
-	<atom:link href="https://knrd.github.io/machine-learning/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://knrd.github.io/tags/machine-learning/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
