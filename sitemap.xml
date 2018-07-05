@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://knrd.github.io/about/</loc>
+    <lastmod>2018-07-05T12:25:17+02:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://knrd.github.io/machine-learning/linear-regression-with-multiple-variables/</loc>
     <lastmod>2018-07-05T11:16:30+02:00</lastmod>
   </url>
