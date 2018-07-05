@@ -1,15 +1,26 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>x on Blog</title>
+    <title>Machine learning on knrd python blog</title>
     <link>https://knrd.github.io/machine-learning/</link>
-    <description>Recent content in x on Blog</description>
+    <description>Recent content in Machine learning on knrd python blog</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <lastBuildDate>Wed, 04 Jul 2018 18:10:31 +0200</lastBuildDate>
+    <language>en</language>
+    <lastBuildDate>Thu, 05 Jul 2018 11:16:30 +0200</lastBuildDate>
     
 	<atom:link href="https://knrd.github.io/machine-learning/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Linear Regression with Multiple Variables</title>
+      <link>https://knrd.github.io/machine-learning/linear-regression-with-multiple-variables/</link>
+      <pubDate>Thu, 05 Jul 2018 11:16:30 +0200</pubDate>
+      
+      <guid>https://knrd.github.io/machine-learning/linear-regression-with-multiple-variables/</guid>
+      <description>&lt;p&gt;I will recode assignments from 2nd week quiz regarding linear regression topic. Solutions are valid for one and multiple variables regression.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>Motivation</title>
@@ -17,9 +28,10 @@
       <pubDate>Wed, 04 Jul 2018 18:10:31 +0200</pubDate>
       
       <guid>https://knrd.github.io/machine-learning/motivation/</guid>
-      <description>Bla bla bla. Lorem impus Bla bla bla. Lorem impus Bla bla bla. Lorem impus
-Bla bla bla. Lorem impus Bla bla bla. Lorem impus
-Bla bla bla. Lorem impus Bla bla bla. Lorem impus Bla bla bla. Lorem impus Bla bla bla. Lorem impus</description>
+      <description>&lt;p&gt;I want to post on this blog series of short notes, about how to recode to Python assignments code from &amp;ldquo;&lt;a href=&#34;https://www.coursera.org/learn/machine-learning/&#34;&gt;Machine Learning&lt;/a&gt;&amp;rdquo; course.
+In original course language Matlab is chosen as teaching language. I wanted to have also Python version.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
     </item>
     
   </channel>

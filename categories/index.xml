@@ -1,14 +1,23 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Categories on Blog</title>
+    <title>Categories on knrd python blog</title>
     <link>https://knrd.github.io/categories/</link>
-    <description>Recent content in Categories on Blog</description>
+    <description>Recent content in Categories on knrd python blog</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
+    <language>en</language>
     
 	<atom:link href="https://knrd.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Machine Learning</title>
+      <link>https://knrd.github.io/categories/machine-learning/</link>
+      <pubDate>Thu, 05 Jul 2018 11:16:30 +0200</pubDate>
+      
+      <guid>https://knrd.github.io/categories/machine-learning/</guid>
+      <description></description>
+    </item>
     
   </channel>
 </rss>

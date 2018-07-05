@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <title>Linear Regression with Multiple Variables - knrd python blog</title>
+  <meta property="og:title" content="Linear Regression with Multiple Variables - knrd python blog" />
+  <meta name="twitter:title" content="Linear Regression with Multiple Variables - knrd python blog" />
+  <meta name="description" content="I will recode assignments from 2nd week quiz regarding linear regression topic. Solutions are valid for one and multiple variables regression.
+
+">
+  <meta property="og:description" content="I will recode assignments from 2nd week quiz regarding linear regression topic. Solutions are valid for one and multiple variables regression.
+
+">
+  <meta name="twitter:description" content="I will recode assignments from 2nd week quiz regarding linear regression topic. Solutions are valid for one and multiple variables regression.
+
+">
+  <meta name="author" content="Konrad"/>
+  <meta property="og:site_name" content="knrd python blog" />
+  <meta property="og:url" content="/machine-learning/linear-regression-with-multiple-variables/" />
+  <meta property="og:type" content="article" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="generator" content="Hugo 0.42.2" />
+  <link rel="stylesheet" href="/css/style.css" media="all" />
+  <link rel="stylesheet" href="/css/syntax.css" media="all" />
+  <link rel="stylesheet" href="/css/custom.css" media="all" />
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+" crossorigin="anonymous"></script>
+
+  
+<script type="text/javascript"
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\[','\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    // Fix <code> tags after MathJax finishes running. This is a
+    // hack to overcome a shortcoming of Markdown. Discussion at
+    // https://github.com/mojombo/jekyll/issues/199
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+
+
+</head>
+
+<body>
+
+<header class="site-header">
+  <nav class="site-navi">
+    <h1 class="site-title"><a href="/">knrd python blog</a></h1>
+    <ul class="site-navi-items">
+      <li class="site-navi-item-categories"><a href="/categories/" title="Categories">Categories</a></li>
+      <li class="site-navi-item-about"><a href="/about/" title="About">About</a></li>
+    </ul>
+  </nav>
+</header>
+<hr class="site-header-bottom">
+
+  <div class="main" role="main">
+    <article class="article">
+      
+      
+      <h1 class="article-title">Linear Regression with Multiple Variables</h1>
+      
+      <hr class="article-title-bottom">
+      <ul class="article-meta">
+        <li class="article-meta-date"><time>July 5, 2018</time></li>
+        <li class="article-meta-categories">
+          <a href="/categories/machine-learning/">
+            <i class="fas fa-folder"></i>
+            machine learning
+          </a>&nbsp;
+        </li>
+      </ul>
+      
+<aside class="toc">
+  <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#hypothesis-function">Hypothesis function</a></li>
+<li><a href="#cost-function">Cost function</a></li>
+<li><a href="#gradient-descent-for-multiple-variables">Gradient Descent for Multiple Variables</a></li>
+<li><a href="#final-python-script-and-tests">Final Python script and tests</a></li>
+</ul></li>
+</ul>
+</nav>
+</aside>
+      <p>I will recode assignments from 2nd week quiz regarding linear regression topic. Solutions are valid for one and multiple variables regression.</p>
+
+<p></p>
+
+<h2 id="hypothesis-function">Hypothesis function</h2>
+
+<p>Let <code>$h_\theta (x)$</code> be hypothesis function for <code>$n$</code> features:
+$$h_\theta (x) = \theta_0 + \theta_1 x_1 + \theta_2 x_2 + \theta_3 x_3 + \cdots + \theta_n x_n$$
+This function can be definition by matrix multiplication:
+$$
+\begin{align*}
+h_\theta(x) = \begin{bmatrix}\theta_0 \quad \theta_1 \quad &hellip; \quad \theta_n
+\end{bmatrix}
+\begin{bmatrix}
+x_0 \newline x_1 \newline \vdots \newline x_n
+\end{bmatrix}= \theta^T x
+\end{align*}
+$$
+As <code>$X$</code> we can define matrix with <code>$m$</code> training examples for <code>$n$</code> features:
+$$
+\begin{align*}
+X = \begin{bmatrix}
+x_0^{(1)} x_0^{(2)} &hellip; x_0^{(m)} \newline
+x_1^{(1)} x_1^{(2)} &hellip; x_1^{(m)} \newline
+\vdots \quad \vdots \hspace{0.5em} &hellip; \hspace{0.5em} \vdots \newline
+x_n^{(1)} x_n^{(2)} &hellip; x_n^{(m)}
+\end{bmatrix}
+\end{align*}
+$$
+Then vector version of hypothesis function will be:
+$$H_\theta(X) = X\theta$$</p>
+
+<h2 id="cost-function">Cost function</h2>
+
+<p>Let <code>$J (\theta)$</code> be cost function:
+$$
+J (\theta) =
+\frac{1}{2m} \sum\limits_{i=1}^{m} (h_\theta(x^{(i)}) - y^{(i)})^2 =
+\frac{1}{2m} \sum\limits_{i=1}^{m} (\theta^Tx^{(i)} - y^{(i)})^2 =
+\frac{1}{2m} (X\theta - y)^T (X\theta - y)
+$$</p>
+
+<p>Then Python implementation of this function in last, vector form  will be:
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+
+<span class="k">def</span> <span class="nf">compute_cost</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">theta</span><span class="p">):</span>
+    <span class="n">m</span> <span class="o">=</span> <span class="n">y</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">partial_diff</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">theta</span><span class="p">)</span> <span class="o">-</span> <span class="n">y</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">partial_diff</span><span class="o">.</span><span class="n">transpose</span><span class="p">(),</span> <span class="n">partial_diff</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">m</span><span class="p">)</span></code></pre></td></tr></table>
+</div>
+</div></p>
+
+<h2 id="gradient-descent-for-multiple-variables">Gradient Descent for Multiple Variables</h2>
+
+<p>To fit <code>$\theta$</code> parameter we need to minimize <code>$J(\theta)$</code> function. For each <code>$\theta$</code> we will be updating its value:
+$$
+\theta_j = \theta_j - \alpha \frac{1}{m} \sum\limits_{i=1}^{m} (h_\theta(x^{(i)}) - y^{(i)}) x_j^{(i)}\qquad  \text{for } j = 0..n
+$$
+where <code>$m$</code> is number of training examples and <code>$n$</code> is number of features.</p>
+
+<p>Python implementation of this function will be:
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+
+<span class="k">def</span> <span class="nf">gradient_descent</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">theta</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">num_iters</span><span class="p">):</span>
+    <span class="n">m</span> <span class="o">=</span> <span class="n">y</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">J_history</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">num_iters</span><span class="p">)</span>
+
+    <span class="n">temp_theta</span> <span class="o">=</span> <span class="n">theta</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+    <span class="k">for</span> <span class="nb">iter</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_iters</span><span class="p">):</span>
+        <span class="n">partial_diff</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">theta</span><span class="p">)</span> <span class="o">-</span> <span class="n">y</span>
+        <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">theta</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+            <span class="n">to_sum</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">partial_diff</span> <span class="o">*</span> <span class="n">X</span><span class="p">[:,</span> <span class="p">[</span><span class="n">n</span><span class="p">]])</span>
+            <span class="n">temp_theta</span><span class="p">[</span><span class="n">n</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">theta</span><span class="p">[</span><span class="n">n</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">alpha</span> <span class="o">*</span> <span class="n">to_sum</span> <span class="o">/</span> <span class="n">m</span>
+        <span class="n">theta</span> <span class="o">=</span> <span class="n">temp_theta</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="n">J_history</span><span class="p">[</span><span class="nb">iter</span><span class="p">]</span> <span class="o">=</span> <span class="n">compute_cost</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">theta</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="p">[</span><span class="n">theta</span><span class="p">,</span> <span class="n">J_history</span><span class="p">]</span></code></pre></td></tr></table>
+</div>
+</div></p>
+
+<h2 id="final-python-script-and-tests">Final Python script and tests</h2>
+
+<p>I have copied test conditions from <code>ex1.m</code> and added to final script.</p>
+
+<p><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+
+<span class="c1"># loading data from original course</span>
+<span class="n">ex1_data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="s1">&#39;./ex1/ex1data1.txt&#39;</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
+
+<span class="n">y</span> <span class="o">=</span> <span class="n">ex1_data</span><span class="p">[:,</span> <span class="p">[</span><span class="mi">1</span><span class="p">]]</span>
+<span class="n">xs</span> <span class="o">=</span> <span class="n">ex1_data</span><span class="p">[:,</span> <span class="p">[</span><span class="mi">0</span><span class="p">]]</span>
+<span class="n">m</span> <span class="o">=</span> <span class="n">y</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">c_</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">([</span><span class="n">m</span><span class="p">,</span> <span class="mi">1</span><span class="p">]),</span> <span class="n">xs</span><span class="p">]</span>
+
+<span class="c1">## Cost function</span>
+
+<span class="k">def</span> <span class="nf">compute_cost</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">theta</span><span class="p">):</span>
+    <span class="n">m</span> <span class="o">=</span> <span class="n">y</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">partial_diff</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">theta</span><span class="p">)</span> <span class="o">-</span> <span class="n">y</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">partial_diff</span><span class="o">.</span><span class="n">transpose</span><span class="p">(),</span> <span class="n">partial_diff</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">m</span><span class="p">)</span>
+
+<span class="n">theta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;Testing the cost function ...&#39;</span><span class="p">)</span>
+<span class="n">J</span> <span class="o">=</span> <span class="n">compute_cost</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">theta</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;With theta = </span><span class="se">\n</span><span class="si">%s</span><span class="se">\n</span><span class="s1">Cost computed = </span><span class="si">%f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">J</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;Expected cost value (approx) 32.07&#39;</span><span class="p">)</span>
+
+<span class="n">theta_2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="o">-</span><span class="mf">1.</span><span class="p">],</span> <span class="p">[</span><span class="mf">2.</span><span class="p">]])</span>
+<span class="n">J</span> <span class="o">=</span> <span class="n">compute_cost</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">theta_2</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;With theta = </span><span class="se">\n</span><span class="si">%s</span><span class="se">\n</span><span class="s1">Cost computed = </span><span class="si">%f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">theta_2</span><span class="p">,</span> <span class="n">J</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;Expected cost value (approx) 54.24&#39;</span><span class="p">)</span>
+
+<span class="c1">## Gradient Descent for Multiple Variables</span>
+
+<span class="k">def</span> <span class="nf">gradient_descent</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">theta</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">num_iters</span><span class="p">):</span>
+    <span class="n">m</span> <span class="o">=</span> <span class="n">y</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">J_history</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">num_iters</span><span class="p">)</span>
+
+    <span class="n">temp_theta</span> <span class="o">=</span> <span class="n">theta</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+    <span class="k">for</span> <span class="nb">iter</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_iters</span><span class="p">):</span>
+        <span class="n">partial_diff</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">theta</span><span class="p">)</span> <span class="o">-</span> <span class="n">y</span>
+        <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">theta</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+            <span class="n">to_sum</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">partial_diff</span> <span class="o">*</span> <span class="n">X</span><span class="p">[:,</span> <span class="p">[</span><span class="n">n</span><span class="p">]])</span>
+            <span class="n">temp_theta</span><span class="p">[</span><span class="n">n</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">theta</span><span class="p">[</span><span class="n">n</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">alpha</span> <span class="o">*</span> <span class="n">to_sum</span> <span class="o">/</span> <span class="n">m</span>
+        <span class="n">theta</span> <span class="o">=</span> <span class="n">temp_theta</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="n">J_history</span><span class="p">[</span><span class="nb">iter</span><span class="p">]</span> <span class="o">=</span> <span class="n">compute_cost</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">theta</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="p">[</span><span class="n">theta</span><span class="p">,</span> <span class="n">J_history</span><span class="p">]</span>
+
+<span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.01</span>
+<span class="n">iterations</span> <span class="o">=</span> <span class="mi">1500</span>
+
+<span class="n">theta</span><span class="p">,</span> <span class="n">mJ_history</span> <span class="o">=</span> <span class="n">gradient_descent</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">theta</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">iterations</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;Theta found by gradient descent:</span><span class="se">\n</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">theta</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;Expected theta values (approx)&#39;</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39; -3.6303</span><span class="se">\n</span><span class="s1">  1.1664&#39;</span><span class="p">)</span></code></pre></td></tr></table>
+</div>
+</div></p>
+
+<p>This will produce such output:</p>
+
+<pre><code>Testing the cost function ...
+With theta = 
+[[ 0.]
+ [ 0.]]
+Cost computed = 32.072734
+Expected cost value (approx) 32.07
+With theta = 
+[[-1.]
+ [ 2.]]
+Cost computed = 54.242455
+Expected cost value (approx) 54.24
+Theta found by gradient descent:
+[[-3.63029144]
+ [ 1.16636235]]
+Expected theta values (approx)
+ -3.6303
+  1.1664
+</code></pre>
+
+<p>As you can see results are as expected.</p>
+
+<p>In next post I will show how to use <code>matplotlib</code> for plotting.</p>
+    </article>
+
+    
+    <div class="disqus-comments">
+      <div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "https-knrd-github-io" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+
+    <ul class="pager article-pager">
+      <li class="pager-newer pager-noitem">&lt; Newer</li>
+      <li class="pager-older">
+        <a href="/machine-learning/motivation/" data-toggle="tooltip" data-placement="top" title="Motivation">Older &gt;</a>
+      </li>
+    </ul>
+  </div>
+
+
+<div class="site-footer">
+  <div class="copyright"></div>
+  <ul class="site-footer-items">
+    <li class="site-footer-item-about"><a href="/about/" title="About">About</a></li>
+  </ul>
+  <div class="powerdby">
+    Powered by <a href="https://gohugo.io/">Hugo</a> and <a href="https://github.com/taikii/whiteplain">Whiteplain</a>
+  </div>
+</div>
+<script src="/js/script.js"></script>
+<script src="/js/custom.js"></script>
+
+
+</body>
+</html>

@@ -1,186 +1,144 @@
 <!DOCTYPE html>
 <html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <title>knrd python blog</title>
+  <meta property="og:title" content="knrd python blog" />
+  <meta name="twitter:title" content="knrd python blog" />
+  <meta name="author" content="Konrad"/>
+  <meta property="og:site_name" content="knrd python blog" />
+  <meta property="og:url" content="/" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="generator" content="Hugo 0.42.2" />
+  <link href="/index.xml" rel="alternate" type="application/rss+xml" title="knrd python blog" />
+  <link href="/index.xml" rel="feed" type="application/rss+xml" title="knrd python blog" />
+  <link rel="stylesheet" href="/css/style.css" media="all" />
+  <link rel="stylesheet" href="/css/syntax.css" media="all" />
+  <link rel="stylesheet" href="/css/custom.css" media="all" />
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+" crossorigin="anonymous"></script>
 
-  <head>
-    <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+<script type="text/javascript"
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
 
-<meta property="og:title" content="Blog" />
-<meta property="og:description" content="" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://knrd.github.io/" />
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\[','\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+});
+</script>
 
-
-
-<meta property="og:updated_time" content="2018-07-04T18:10:31&#43;02:00"/>
-
-
-
-
-
-
-
-
-
-
-<meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Blog"/>
-<meta name="twitter:description" content=""/>
-<meta name="generator" content="Hugo 0.42.2" />
-
-
-    
-<script type="application/ld+json">
-{
-  "@context": "http://schema.org",
-  "@type": "Blog",
-  "headline": "Blog",
-  "url" : "https://knrd.github.io/",
-  "author": {
-    "@type": "Person",
-    "name": "knrd"
-  },
-  "dateModified": "2018-07-04T18:10:31&#43;02:00",
-  "keywords": "machine-learning,python,"
-}
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    // Fix <code> tags after MathJax finishes running. This is a
+    // hack to overcome a shortcoming of Markdown. Discussion at
+    // https://github.com/mojombo/jekyll/issues/199
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
 </script>
 
 
-    <link rel="canonical" href="https://knrd.github.io/">
 
-    <title>Blog</title>
+</head>
 
-    <!-- combined, minified CSS -->
-    <link href="https://knrd.github.io/css/style.css" rel="stylesheet" integrity="sha384-TbfEhJn4HkgPUIZUhhHaAYsycYKHxSuIloCjZOiyCSpbVunRQxg5T5pxKVFwxilF" crossorigin="anonymous">
+<body>
 
-    
-    <!-- RSS 2.0 feed -->
-    <link href="https://knrd.github.io/index.xml" rel="alternate" type="application/rss+xml" title="Blog" />
-    
+<header class="site-header">
+  <nav class="site-navi">
+    <h1 class="site-title"><a href="/">knrd python blog</a></h1>
+    <ul class="site-navi-items">
+      <li class="site-navi-item-categories"><a href="/categories/" title="Categories">Categories</a></li>
+      <li class="site-navi-item-about"><a href="/about/" title="About">About</a></li>
+    </ul>
+  </nav>
+</header>
+<hr class="site-header-bottom">
 
-    
-
-    
-
-    
-
-  </head>
-
-  <body>
-
-    
-    <div class="blog-masthead">
-      <div class="container">
-        <nav class="nav blog-nav">
-          <a class="nav-link active" href="https://knrd.github.io/">Home</a>
-        </nav>
-      </div>
-    </div>
-    
-
-    
-    <header class="blog-header">
-      <div class="container">
-        <h1 class="blog-title"><a href="https://knrd.github.io/" rel="home">Blog</a></h1>
-        
-      </div>
-    </header>
-    
-
-    
-    <div class="container">
-      <div class="row">
-        <div class="col-sm-8 blog-main">
-
+  <div class="main" role="main">
+    <section class="list home-list">
+      <article class="article">
+        <a href="/machine-learning/linear-regression-with-multiple-variables/" class="article-titles">
+          <h2 class="article-title">Linear Regression with Multiple Variables</h2>
           
+        </a>
+        <ul class="article-meta">
+          <li class="article-meta-date"><time>July 5, 2018</time></li>
+          <li class="article-meta-categories">
+            <a href="/categories/machine-learning/">
+              <i class="fas fa-folder"></i>
+              machine learning
+            </a>&nbsp;
+          </li>
+        </ul>
+        <div class="article-content">
+          <p>I will recode assignments from 2nd week quiz regarding linear regression topic. Solutions are valid for one and multiple variables regression.</p>
 
+<p></p>
+        </div>
+        <div class="article-readmore"><a href="/machine-learning/linear-regression-with-multiple-variables/">Read more...</a></div>
+        <div class="article-floatclear"></div>
+      </article>
+      <article class="article">
+        <a href="/machine-learning/motivation/" class="article-titles">
+          <h2 class="article-title">Motivation</h2>
+          
+        </a>
+        <ul class="article-meta">
+          <li class="article-meta-date"><time>July 4, 2018</time></li>
+          <li class="article-meta-categories">
+            <a href="/categories/machine-learning/">
+              <i class="fas fa-folder"></i>
+              machine learning
+            </a>&nbsp;
+          </li>
+        </ul>
+        <div class="article-content">
+          <p>I want to post on this blog series of short notes, about how to recode to Python assignments code from &ldquo;<a href="https://www.coursera.org/learn/machine-learning/">Machine Learning</a>&rdquo; course.
+In original course language Matlab is chosen as teaching language. I wanted to have also Python version.</p>
 
-
-
-
-
-
-<article class="blog-post">
-  <header>
-    <h2 class="blog-post-title"><a href="https://knrd.github.io/machine-learning/motivation/">Motivation</a></h2>
-    <p class="blog-post-meta"><time datetime="2018-07-04T18:10:31&#43;02:00">Wed, 04 Jul 2018</time> by knrd in 
-
-<i class="fa fa-tag" aria-hidden="true"></i>&nbsp;<a href="/tags/machine-learning" rel="tag">machine learning</a>, <a href="/tags/python" rel="tag">python</a>
-
-</p>
-  </header>
-  Bla bla bla. Lorem impus Bla bla bla. Lorem impus Bla bla bla. Lorem impus
-Bla bla bla. Lorem impus Bla bla bla. Lorem impus
-Bla bla bla. Lorem impus Bla bla bla. Lorem impus Bla bla bla. Lorem impus Bla bla bla. Lorem impus
-  <a href='https://knrd.github.io/machine-learning/motivation/'>Read more →</a>
-</article> 
-
-
-
-
-
-
-<article class="blog-post">
-  <header>
-    <h2 class="blog-post-title"><a href="https://knrd.github.io/machine-learning/">x</a></h2>
-    <p class="blog-post-meta"><time datetime="2018-07-04T18:10:31&#43;02:00">Wed, 04 Jul 2018</time> by knrd</p>
-  </header>
-  
-  <a href='https://knrd.github.io/machine-learning/'>Read more →</a>
-</article> 
-
-
-
-
-
-
-
-
-        </div> <!-- /.blog-main -->
-
-        <aside class="col-sm-3 ml-auto blog-sidebar">
-  
-  <section class="sidebar-module sidebar-module-inset">
-    <h4>About</h4>
-    <p>About sidebar</p>
-  </section>
-  
-
-  
-        <section class="sidebar-module">
-    <h4>Recent Posts</h4>
-    <ol class="list-unstyled">
-
-
-<li><a href="/machine-learning/motivation/">Motivation</a></li>
-
-    </ol>
-    <h4>Pages(7)</h4>
-  </section>
-
-  
-
-  
-</aside>
-
-
-      </div> <!-- /.row -->
-    </div> <!-- /.container -->
+<p></p>
+        </div>
+        <div class="article-readmore"><a href="/machine-learning/motivation/">Read more...</a></div>
+        <div class="article-floatclear"></div>
+      </article>
+    </section>
     
 
-    
-    <footer class="blog-footer">
-      <p>
-      
-      Blog template created by <a href="https://twitter.com/mdo">@mdo</a>, ported to Hugo by <a href='https://twitter.com/mralanorth'>@mralanorth</a>.
-      
-      </p>
-      <p>
-      <a href="#">Back to top</a>
-      </p>
-    </footer>
-    
+  </div>
 
-  </body>
 
+
+<div class="site-footer">
+  <div class="copyright"></div>
+  <ul class="site-footer-items">
+    <li class="site-footer-item-rsslink">
+      <a href="/index.xml" type="application/rss+xml" target="_blank" title="RSS">
+        <i class="fas fa-rss"></i>
+      </a>
+    </li>
+    <li class="site-footer-item-about"><a href="/about/" title="About">About</a></li>
+  </ul>
+  <div class="powerdby">
+    Powered by <a href="https://gohugo.io/">Hugo</a> and <a href="https://github.com/taikii/whiteplain">Whiteplain</a>
+  </div>
+</div>
+<script src="/js/script.js"></script>
+<script src="/js/custom.js"></script>
+
+
+</body>
 </html>
