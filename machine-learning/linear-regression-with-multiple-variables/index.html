@@ -117,7 +117,7 @@ $$h_\theta (x) = \theta_0 + \theta_1 x_1 + \theta_2 x_2 + \theta_3 x_3 + \cdots 
 This function can be definition by matrix multiplication:
 $$
 \begin{align*}
-h_\theta(x) = \begin{bmatrix}\theta_0 \quad \theta_1 \quad &hellip; \quad \theta_n
+h_\theta(x) = \begin{bmatrix}\theta_0 \quad \theta_1 \quad \cdots \quad \theta_n
 \end{bmatrix}
 \begin{bmatrix}
 x_0 \newline x_1 \newline \vdots \newline x_n
@@ -128,10 +128,10 @@ As <code>$X$</code> we can define matrix with <code>$m$</code> training examples
 $$
 \begin{align*}
 X = \begin{bmatrix}
-x_0^{(1)} x_0^{(2)} &hellip; x_0^{(m)} \newline
-x_1^{(1)} x_1^{(2)} &hellip; x_1^{(m)} \newline
-\vdots \quad \vdots \hspace{0.5em} &hellip; \hspace{0.5em} \vdots \newline
-x_n^{(1)} x_n^{(2)} &hellip; x_n^{(m)}
+x_0^{(1)} &amp; x_0^{(2)} &amp; \cdots &amp; x_0^{(m)} \newline
+x_1^{(1)} &amp; x_1^{(2)} &amp; \cdots &amp; x_1^{(m)} \newline
+\vdots &amp; \vdots &amp; \ddots &amp; \vdots \newline
+x_n^{(1)} &amp; x_n^{(2)} &amp; \cdots &amp; x_n^{(m)}
 \end{bmatrix}
 \end{align*}
 $$
@@ -223,7 +223,8 @@ where <code>$m$</code> is number of training examples and <code>$n$</code> is nu
 <p>Each training set <code>$x_i$</code> will be scaled and normalized:
 $$
 x_i = \frac{x_i - \mu_i}{\sigma_i}
-$$</p>
+$$
+where <code>$\mu$</code> is mean and <code>$\sigma$</code> standard deviation.</p>
 
 <p>Python implementation of this function:
 <div class="highlight"><div class="chroma">
@@ -255,7 +256,7 @@ $$</p>
     <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">x_columns</span><span class="p">):</span>
         <span class="n">mu</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">X</span><span class="p">[:,</span> <span class="n">col</span><span class="p">])</span>
         <span class="n">sigma</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">X</span><span class="p">[:,</span> <span class="n">col</span><span class="p">])</span>
-        <span class="n">X_norm</span><span class="p">[:,</span> <span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">X</span><span class="p">[:,</span> <span class="n">col</span><span class="p">]</span> <span class="o">-</span> <span class="n">mu</span><span class="p">[</span><span class="n">col</span><span class="p">])</span> <span class="o">/</span> <span class="n">sigma</span><span class="p">[</span><span class="n">col</span><span class="p">];</span>
+        <span class="n">X_norm</span><span class="p">[:,</span> <span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">X</span><span class="p">[:,</span> <span class="n">col</span><span class="p">]</span> <span class="o">-</span> <span class="n">mu</span><span class="p">[</span><span class="n">col</span><span class="p">])</span> <span class="o">/</span> <span class="n">sigma</span><span class="p">[</span><span class="n">col</span><span class="p">]</span>
 
     <span class="k">return</span> <span class="p">[</span><span class="n">X_norm</span><span class="p">,</span> <span class="n">mu</span><span class="p">,</span> <span class="n">sigma</span><span class="p">]</span></code></pre></td></tr></table>
 </div>
@@ -392,7 +393,7 @@ $$</p>
     <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">x_columns</span><span class="p">):</span>
         <span class="n">mu</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">X</span><span class="p">[:,</span> <span class="n">col</span><span class="p">])</span>
         <span class="n">sigma</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">X</span><span class="p">[:,</span> <span class="n">col</span><span class="p">])</span>
-        <span class="n">X_norm</span><span class="p">[:,</span> <span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">X</span><span class="p">[:,</span> <span class="n">col</span><span class="p">]</span> <span class="o">-</span> <span class="n">mu</span><span class="p">[</span><span class="n">col</span><span class="p">])</span> <span class="o">/</span> <span class="n">sigma</span><span class="p">[</span><span class="n">col</span><span class="p">];</span>
+        <span class="n">X_norm</span><span class="p">[:,</span> <span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">X</span><span class="p">[:,</span> <span class="n">col</span><span class="p">]</span> <span class="o">-</span> <span class="n">mu</span><span class="p">[</span><span class="n">col</span><span class="p">])</span> <span class="o">/</span> <span class="n">sigma</span><span class="p">[</span><span class="n">col</span><span class="p">]</span>
 
     <span class="k">return</span> <span class="p">[</span><span class="n">X_norm</span><span class="p">,</span> <span class="n">mu</span><span class="p">,</span> <span class="n">sigma</span><span class="p">]</span>
 
@@ -480,7 +481,7 @@ Theta computed from gradient descent:
 
 <p>As you can see results are as expected.</p>
 
-<p>In next post I will show how to use <code>matplotlib</code> for plotting.</p>
+<p>In next post I will show how to recode normal equation to python.</p>
     </article>
 
     
@@ -508,7 +509,9 @@ Theta computed from gradient descent:
     </div>
 
     <ul class="pager article-pager">
-      <li class="pager-newer pager-noitem">&lt; Newer</li>
+      <li class="pager-newer">
+          <a href="/machine-learning/linear-regression-normal-equation/" data-toggle="tooltip" data-placement="top" title="Linear Regression with Multiple Variables - Normal equation">&lt; Newer</a>
+      </li>
       <li class="pager-older">
         <a href="/machine-learning/motivation/" data-toggle="tooltip" data-placement="top" title="Motivation">Older &gt;</a>
       </li>

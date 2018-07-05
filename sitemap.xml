@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://knrd.github.io/machine-learning/linear-regression-normal-equation/</loc>
+    <lastmod>2018-07-06T00:03:30+02:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://knrd.github.io/about/</loc>
     <lastmod>2018-07-05T12:25:17+02:00</lastmod>
   </url>
@@ -24,13 +29,13 @@
   
   <url>
     <loc>https://knrd.github.io/categories/machine-learning/</loc>
-    <lastmod>2018-07-05T11:16:30+02:00</lastmod>
+    <lastmod>2018-07-06T00:03:30+02:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://knrd.github.io/machine-learning/</loc>
-    <lastmod>2018-07-05T11:16:30+02:00</lastmod>
+    <lastmod>2018-07-06T00:03:30+02:00</lastmod>
   </url>
   
   <url>
@@ -45,7 +50,7 @@
   
   <url>
     <loc>https://knrd.github.io/</loc>
-    <lastmod>2018-07-05T11:16:30+02:00</lastmod>
+    <lastmod>2018-07-06T00:03:30+02:00</lastmod>
     <priority>0</priority>
   </url>
   

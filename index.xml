@@ -6,10 +6,21 @@
     <description>Recent content on knrd python blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 05 Jul 2018 11:16:30 +0200</lastBuildDate>
+    <lastBuildDate>Fri, 06 Jul 2018 00:03:30 +0200</lastBuildDate>
     
 	<atom:link href="https://knrd.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Linear Regression with Multiple Variables - Normal equation</title>
+      <link>https://knrd.github.io/machine-learning/linear-regression-normal-equation/</link>
+      <pubDate>Fri, 06 Jul 2018 00:03:30 +0200</pubDate>
+      
+      <guid>https://knrd.github.io/machine-learning/linear-regression-normal-equation/</guid>
+      <description>&lt;p&gt;Here I will recode normal equation assignments from 2nd week quiz regarding linear regression topic. Normal equation is an analytical solution for the problem.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>Linear Regression with Multiple Variables</title>
