@@ -255,7 +255,7 @@ where <code>$\mu$</code> is mean and <code>$\sigma$</code> standard deviation.</
 
 <h2 id="final-python-script-and-tests">Final Python script and tests</h2>
 
-<p>I have copied test conditions from <code>ex1.m</code> and added to final script.</p>
+<p>I have copied test conditions from <code>ex1.m</code> and added to final script. Also simple plotting with <code>matplotlib</code> is included.</p>
 
 <p><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -342,9 +342,24 @@ where <code>$\mu$</code> is mean and <code>$\sigma$</code> standard deviation.</
 </span><span class="lnt">81
 </span><span class="lnt">82
 </span><span class="lnt">83
+</span><span class="lnt">84
+</span><span class="lnt">85
+</span><span class="lnt">86
+</span><span class="lnt">87
+</span><span class="lnt">88
+</span><span class="lnt">89
+</span><span class="lnt">90
+</span><span class="lnt">91
+</span><span class="lnt">92
+</span><span class="lnt">93
+</span><span class="lnt">94
+</span><span class="lnt">95
+</span><span class="lnt">96
+</span><span class="lnt">97
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
 
 
 <span class="k">def</span> <span class="nf">compute_cost</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">theta</span><span class="p">):</span>
@@ -426,7 +441,20 @@ where <code>$\mu$</code> is mean and <code>$\sigma$</code> standard deviation.</
 <span class="k">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Running gradient descent on 2nd dataset&#39;</span><span class="p">)</span>
 <span class="p">[</span><span class="n">theta2</span><span class="p">,</span> <span class="n">J_history2</span><span class="p">]</span> <span class="o">=</span> <span class="n">gradient_descent</span><span class="p">(</span><span class="n">X2</span><span class="p">,</span> <span class="n">y2</span><span class="p">,</span> <span class="n">theta2</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">num_iters</span><span class="p">)</span>
 
-<span class="k">print</span><span class="p">(</span><span class="s1">&#39;Theta computed from gradient descent: </span><span class="se">\n</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">theta2</span><span class="p">)</span></code></pre></td></tr></table>
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;Theta computed from gradient descent: </span><span class="se">\n</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">theta2</span><span class="p">)</span>
+
+<span class="c1">## Plotting</span>
+
+<span class="n">p</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s1">&#39;rx&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">setp</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="s1">&#39;MarkerSize&#39;</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Profit in $10,000s&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Population of City in 10,000s&#39;</span><span class="p">)</span>
+
+<span class="c1"># plt.hold on; % keep previous plot visible</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">theta</span><span class="p">),</span><span class="s1">&#39;-&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;Training data&#39;</span><span class="p">,</span> <span class="s1">&#39;Linear regression&#39;</span><span class="p">])</span>
+<span class="c1"># hold off % don&#39;t overlay any more plots on this figure</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span></code></pre></td></tr></table>
 </div>
 </div></p>
 
@@ -457,6 +485,8 @@ Theta computed from gradient descent:
  [ 109398.90129361]
  [  -6529.45967813]]
 </code></pre>
+
+<p><img src="/machine-learning/plot1.png" alt="Example image" /></p>
 
 <p>As you can see results are as expected.</p>
 
